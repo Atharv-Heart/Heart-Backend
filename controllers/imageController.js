@@ -3,7 +3,6 @@ const Image = require("../models/Image");
 
 const uploadImage = async (req, res) => {
   try {
-    const { userId } = req.user;
     const { text } = req.body;
 
     if (!req.files || !req.files.image) {
@@ -16,7 +15,7 @@ const uploadImage = async (req, res) => {
       folder: "atharvFolder",
     });
 
-    const imageUrl = new Image({ userId, imageUrl: result.secure_url, text });
+    const imageUrl = new Image({imageUrl: result.secure_url, text });
     await imageUrl.save();
     res.status(201).json({ success: "true" });
   } catch (error) {

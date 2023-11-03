@@ -14,7 +14,7 @@ router.post("/login", userController.login);
 router.post("/events", verifyToken, eventController.createEvent);
 router.get("/events", eventController.getEvents);
 router.put("/events/:eventId/toggleSaved", verifyToken, eventController.updateEvents);
-router.post("/gallery", verifyToken, imageController.uploadImage);
+router.post("/gallery", imageController.uploadImage);
 router.get("/gallery", imageController.getImages);
 router.post("/deals", verifyToken, dealsController.createDeal);
 router.get("/deals", dealsController.getDeals);
