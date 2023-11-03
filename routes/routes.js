@@ -15,7 +15,7 @@ router.post("/events", verifyToken, eventController.createEvent);
 router.get("/events", eventController.getEvents);
 router.put("/events/:eventId/toggleSaved", verifyToken, eventController.updateEvents);
 router.post("/gallery", verifyToken, imageController.uploadImage);
-router.get("/gallery", verifyToken, imageController.getImages);
+router.get("/gallery", imageController.getImages);
 router.post("/deals", verifyToken, dealsController.createDeal);
 router.get("/deals", dealsController.getDeals);
 router.get("/advertisements", dealsController.getAdvertisements);
@@ -26,7 +26,5 @@ router.get("/nearbyPlaces", verifyToken, nearbyPlaceController.getNearbyPlaces);
 router.post("/addCoins", verifyToken, userCoinsController.addCoins);
 router.get("/getCoins", verifyToken, userCoinsController.getCoins);
 module.exports = router;
-
-
 
 module.exports = router;

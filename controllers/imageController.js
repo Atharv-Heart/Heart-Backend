@@ -26,8 +26,8 @@ const uploadImage = async (req, res) => {
 
 const getImages = async (req, res) => {
   try {
-    const { userId } = req.user;
-    const images = await Image.find({ userId });
+    
+    const images = await Image.find();
     res.status(200).json(images);
   } catch (error) {
     res.status(500).json({ error: "Error fetching advertisements." });
