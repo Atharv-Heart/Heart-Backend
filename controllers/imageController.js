@@ -15,7 +15,7 @@ const uploadImage = async (req, res) => {
       folder: "atharvFolder",
     });
 
-    const imageUrl = new Image({imageUrl: result.secure_url, text });
+    const imageUrl = new Image({ imageUrl: result.secure_url, text });
     await imageUrl.save();
     res.status(201).json({ success: "true" });
   } catch (error) {
@@ -24,18 +24,21 @@ const uploadImage = async (req, res) => {
 };
 
 const getImages = async (req, res) => {
-  
-    
-    const folder = 'your-folder-name';
+  const folder = "atharvFolder";
 
-cloudinary.search
-  .expression(`folder:${folder}`)
-  .execute()
-  .then((result) => {
-    console.log(result.resources);
-  })
- 
-}
+  try {
+    const result = await cloudinary.search
+      .expression(`folder:${folder}`)
+      .execute();
+
+    const urls = result.resources.map((resource) => resource.url);
+
+    res.status(200).json(urls);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error fetching images" });
+  }
+};
 
 module.exports = {
   uploadImage,
