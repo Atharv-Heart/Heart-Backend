@@ -53,14 +53,6 @@ const createEvent = async (req, res) => {
   }
 };
 
-const getEvents = async (req, res) => {
-  try {
-    const events = await Event.find({});
-    res.status(200).json(events);
-  } catch (error) {
-    res.status(500).json({ error: "Error fetching events." });
-  }
-};
 
 const updateEvents = async (req, res) => {
   try {
@@ -82,6 +74,14 @@ const updateEvents = async (req, res) => {
   }
 };
 
+const getEvents = async (req, res) => {
+  try {
+    const events = await Event.find({});
+    res.status(200).json(events);
+  } catch (error) {
+    res.status(500).json({ error: "Error fetching events." });
+  }
+};
 // app.put("/events/:eventId/toggleSaved", verifyToken, async (req, res) => {
 
 module.exports = {
