@@ -24,14 +24,18 @@ const uploadImage = async (req, res) => {
 };
 
 const getImages = async (req, res) => {
-  try {
+  
     
-    const images = await Image.find();
-    res.status(200).json(images);
-  } catch (error) {
-    res.status(500).json({ error: "Error fetching advertisements." });
-  }
-};
+    const folder = 'your-folder-name';
+
+cloudinary.search
+  .expression(`folder:${folder}`)
+  .execute()
+  .then((result) => {
+    console.log(result.resources);
+  })
+ 
+}
 
 module.exports = {
   uploadImage,
