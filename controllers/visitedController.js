@@ -1,6 +1,14 @@
 const cloudinary = require("cloudinary").v2;
 const VisitedPlace = require("../models/VisitedPlace");
 
+
+
+const getVisitedPlaces = async (req, res) => {
+  const { userId } = req.user;
+  const visitedPlaces = await VisitedPlace.find({ userId });
+  res.status(200).json(visitedPlaces);
+};
+
 const saveVisitedPlace = async (req, res) => {
   const { userId } = req.user;
   const { date, placeName, placeAddress } = req.body;
@@ -29,12 +37,6 @@ const saveVisitedPlace = async (req, res) => {
 
   await visitedPlace.save();
   res.status(201).json({success:"true"});
-};
-
-const getVisitedPlaces = async (req, res) => {
-  const { userId } = req.user;
-  const visitedPlaces = await VisitedPlace.find({ userId });
-  res.status(200).json(visitedPlaces);
 };
 
 module.exports = {
